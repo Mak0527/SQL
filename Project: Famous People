@@ -1,0 +1,33 @@
+/* Create table about the people and what they do here */
+CREATE TABLE fembillionares 
+(id INTEGER PRIMARY KEY AUTOINCREMENT,
+fullname TEXT,age INTEGER);
+
+INSERT INTO fembillionares (fullname, age) VALUES 
+("Francoise Bettencourt Meyers", 69);
+INSERT INTO fembillionares (fullname, age) VALUES 
+("Alice Walton", 72);
+INSERT INTO fembillionares (fullname, age) VALUES 
+("Julia Koch", 60);
+INSERT INTO fembillionares (fullname, age) VALUES 
+("MacKenzie Scott", 52);
+INSERT INTO fembillionares (fullname, age) VALUES 
+("Jacqueline Mars", 82);
+
+CREATE table wealth 
+(id INTEGER PRIMARY KEY AUTOINCREMENT,
+fm_id INTEGER,
+net_worth TEXT,
+source_wealth TEXT);
+
+INSERT INTO wealth (fm_id, net_worth, source_wealth) VALUES (1, "$74.8 billion", "L'Oréal");
+INSERT INTO wealth (fm_id, net_worth, source_wealth) VALUES (2, "$65.3 billion", "Walmart");
+INSERT INTO wealth (fm_id, net_worth, source_wealth) VALUES (3, "$60 billion", "Koch Industries");
+INSERT INTO wealth (fm_id, net_worth, source_wealth) VALUES (4, "$43.6 billion", "Bezos Divorce");
+INSERT INTO wealth (fm_id, net_worth, source_wealth) VALUES (5, "$31.7 billion", "Candy");
+
+SELECT fm.fullname, wealth.net_worth
+FROM fembillionares AS fm
+JOIN wealth
+ON fm.id = wealth.fm_id;
+SELECT * FROM wealth;
