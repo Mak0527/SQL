@@ -1,0 +1,50 @@
+## Which locations in New York received at least 3 orders in January, and how many orders did they each receive?
+SELECT distinct location, count(orderID)
+FROM BIT_DB0.JanSales
+WHERE location LIKE '%NY%'
+GROUP BY location 
+HAVING count (orderID)>2
+## Answer=
+148 Elm St, New York City, NY 10001	3
+515 Lincoln St, New York City, NY 10001	3
+916 Pine St, New York City, NY 10001	3
+961 Jefferson St, New York City, NY 10001	4
+
+
+## How many of each type of headphone were sold in February?
+SELECT sum(Quantity) as quantity, Product
+FROM BIT_DB0.FebSales
+WHERE Product like '%Headphones%'
+Group BY Product
+## Answer=
+1013	Apple Airpods Headphones
+844	Bose SoundSport Headphones
+1282	Wired Headphones
+
+
+## What was the average amount spent per account in February?
+SELECT avg(quantity*price)
+FROM BIT_DB0.FebSales Feb
+## Answer=
+183.07421402459005
+
+
+##What was the average quantity of products purchased per account in February? 
+SELECT sum(quantity)/count(cust.acctnum)
+FROM BIT_DB0.FebSales Feb
+LEFT JOIN BIT_DB0.customers cust
+ON FEB.orderid=cust.order_id
+## Answer=
+1.06851226318108
+
+
+##Which product brought in the most revenue in January and how much revenue did it bring in total?
+
+SELECT product, 
+sum(quantity*price)
+FROM BIT_DB0.JanSales 
+GROUP BY product
+ORDER BY sum(quantity*price) desc 
+LIMIT 1
+##Answer=
+Macbook Pro Laptop	399500
